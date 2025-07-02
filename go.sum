@@ -1,0 +1,4 @@
+github.com/database-lab/dbutils v0.0.0-20250702105915-eee3db85e735 h1:gftLpbSdArfEFQLBW4XFZDKj1WTfHsH1U7YGRfil9kw=
+github.com/database-lab/dbutils v0.0.0-20250702105915-eee3db85e735/go.mod h1:hhWBHGVEydGFihP58Wrwd+pMm8MKNH3tkTx/IqddqJ0=
+github.com/lib/pq v1.10.1 h1:6VXZrLU0jHBYyAqrSPa+MgPfnSvTPuMgK+k0o5kVFWo=
+github.com/lib/pq v1.10.1/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
