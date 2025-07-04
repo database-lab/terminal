@@ -18,6 +18,7 @@ type (
 		SetValidFrom(validFrom time.Time) error
 		IsChanged() bool
 		Entity() *EntityMerchantCommission
+		ToMap() map[string]any
 	}
 	merchantCommission struct {
 		instance *EntityMerchantCommission
@@ -87,4 +88,11 @@ func (m *merchantCommission) SetCommissionClassId(commissionClassID int) error {
 func (m *merchantCommission) SetValidFrom(validFrom time.Time) error {
 	m.instance.ValidFrom = validFrom
 	return m.setChanged("ValidFrom")
+}
+
+func (m *merchantCommission) ToMap() map[string]any {
+	if !m.IsChanged() {
+		return nil
+	}
+	return db.MapValuesFromChangedFields[*EntityMerchantCommission](m.instance, m.changed, DbTagName)
 }
