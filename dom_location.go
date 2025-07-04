@@ -6,6 +6,23 @@ import (
 	"time"
 )
 
+var (
+	LocationStatuses = map[int]string{
+		BStatusCreated:    "Created",
+		BStatusActive:     "Active",
+		BStatusInactive:   "Inactive",
+		BStatusTerminated: "Terminated",
+		BStatusPending:    "Pending",
+	}
+	LocationStatusesSlice = []map[string]any{
+		{"id": BStatusCreated, "name": LocationStatuses[BStatusCreated]},
+		{"id": BStatusActive, "name": LocationStatuses[BStatusActive]},
+		{"id": BStatusInactive, "name": LocationStatuses[BStatusInactive]},
+		{"id": BStatusTerminated, "name": LocationStatuses[BStatusTerminated]},
+		{"id": BStatusPending, "name": LocationStatuses[BStatusPending]},
+	}
+)
+
 type (
 	Location interface {
 		Id() int
@@ -14,7 +31,8 @@ type (
 		NewMerchantId() int
 		PrevMerchantId() int
 		Name() string
-		Status() int
+		StatusInt() int
+		StatusString() string
 		StatusReasonNote() string
 		StatusDate() time.Time
 		OpeningHoursId() int
@@ -114,8 +132,15 @@ func (l *location) Name() string {
 	return l.instance.Name
 }
 
-func (l *location) Status() int {
+func (l *location) StatusInt() int {
 	return l.instance.Status
+}
+
+func (l *location) StatusString() string {
+	if status, ok := LocationStatuses[l.instance.Status]; ok {
+		return status
+	}
+	return "Unknown"
 }
 
 func (l *location) StatusReasonNote() string {
