@@ -21,6 +21,7 @@ type (
 		CollectorId() int
 		AddressId() int
 		Deleted() bool
+		Address() Address
 		SetId(id int) error
 		SetOldId(oldId int) error
 		SetMerchantId(merchantId int) error
@@ -34,6 +35,7 @@ type (
 		SetCollectorId(collectorId int) error
 		SetAddressId(addressId int) error
 		SetDeleted(deleted bool) error
+		SetAddress(address Address) error
 		IsChanged() bool
 		ToMap() map[string]any
 		Entity() *EntityLocation
