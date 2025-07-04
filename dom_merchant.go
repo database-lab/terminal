@@ -5,13 +5,44 @@ import (
 	db "github.com/database-lab/dbutils"
 )
 
+const (
+	MerchantTypeForeign = iota
+	MerchantTypeOwnMerchant
+	MerchantTypeCollector
+)
+const (
+	MerchantStatusApproved = iota + 1
+	MerchantStatusActive
+	MerchantStatusInactive
+	MerchantStatusTerminated
+	MerchantStatusPending
+)
+
+var (
+	MerchantStatuses = map[int]string{
+		MerchantStatusApproved:   "Approved",
+		MerchantStatusActive:     "Active",
+		MerchantStatusInactive:   "Inactive",
+		MerchantStatusTerminated: "Terminated",
+		MerchantStatusPending:    "Pending",
+	}
+	MerchantStatusesSlice = []map[string]any{
+		{"id": MerchantStatusApproved, "name": MerchantStatuses[MerchantStatusApproved]},
+		{"id": MerchantStatusActive, "name": MerchantStatuses[MerchantStatusActive]},
+		{"id": MerchantStatusInactive, "name": MerchantStatuses[MerchantStatusInactive]},
+		{"id": MerchantStatusTerminated, "name": MerchantStatuses[MerchantStatusTerminated]},
+		{"id": MerchantStatusPending, "name": MerchantStatuses[MerchantStatusPending]},
+	}
+)
+
 type (
 	Merchant interface {
 		Id() int
 		LastName() string
 		FirstName() string
 		Title() string
-		Status() int
+		StatusInt() int
+		StatusString() string
 		Type() int
 		CompanyName() string
 		Deleted() bool
@@ -96,8 +127,15 @@ func (m *merchant) Title() string {
 	return *m.instance.Title
 }
 
-func (m *merchant) Status() int {
+func (m *merchant) StatusInt() int {
 	return m.instance.Status
+}
+
+func (m *merchant) StatusString() string {
+	if _, ok := MerchantStatuses[m.instance.Status]; !ok {
+		return "Unknown"
+	}
+	return MerchantStatuses[m.instance.Status]
 }
 
 func (m *merchant) Type() int {
