@@ -33,6 +33,16 @@ var (
 		{"id": MerchantStatusTerminated, "name": MerchantStatuses[MerchantStatusTerminated]},
 		{"id": MerchantStatusPending, "name": MerchantStatuses[MerchantStatusPending]},
 	}
+	MerchantTypes = map[int]string{
+		MerchantTypeForeign:     "Franchise",
+		MerchantTypeOwnMerchant: "Owner",
+		MerchantTypeCollector:   "Collector only",
+	}
+	MerchantTypesSlice = []map[string]any{
+		{"id": MerchantTypeForeign, "name": MerchantTypes[MerchantTypeForeign]},
+		{"id": MerchantTypeOwnMerchant, "name": MerchantTypes[MerchantTypeOwnMerchant]},
+		{"id": MerchantTypeCollector, "name": MerchantTypes[MerchantTypeCollector]},
+	}
 )
 
 type (
@@ -43,7 +53,8 @@ type (
 		Title() string
 		StatusInt() int
 		StatusString() string
-		Type() int
+		TypeInt() int
+		TypeString() string
 		CompanyName() string
 		Deleted() bool
 		LotteryPoint() bool
@@ -138,8 +149,15 @@ func (m *merchant) StatusString() string {
 	return MerchantStatuses[m.instance.Status]
 }
 
-func (m *merchant) Type() int {
+func (m *merchant) TypeInt() int {
 	return m.instance.MerchantType
+}
+
+func (m *merchant) TypeString() string {
+	if _, ok := MerchantTypes[m.instance.MerchantType]; !ok {
+		return "Unknown"
+	}
+	return MerchantTypes[m.instance.MerchantType]
 }
 
 func (m *merchant) CompanyName() string {
