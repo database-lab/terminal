@@ -40,6 +40,7 @@ type (
 	}
 	location struct {
 		instance *EntityLocation
+		address  Address
 		changed  map[string]bool
 	}
 )
@@ -154,6 +155,10 @@ func (l *location) Deleted() bool {
 	return l.instance.Deleted
 }
 
+func (l *location) Address() Address {
+	return l.address
+}
+
 func (l *location) SetId(id int) error {
 	l.instance.ID = id
 	return l.setChanged("ID")
@@ -249,4 +254,12 @@ func (l *location) SetAddressId(addressId int) error {
 func (l *location) SetDeleted(deleted bool) error {
 	l.instance.Deleted = deleted
 	return l.setChanged("Deleted")
+}
+
+func (l *location) SetAddress(address Address) error {
+	if address == nil {
+		return fmt.Errorf("address cannot be nil")
+	}
+	l.address = address
+	return nil
 }
