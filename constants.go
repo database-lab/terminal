@@ -11,3 +11,9 @@ const (
 	BStatusTerminated = 4
 	BStatusPending    = 5
 )
+
+const (
+	CommissionTypeFixedRate       = 1 // Fixed amount per transaction
+	CommissionTypeFixedPercentage = 2 // Fixed percentage of transaction amount
+	CommissionTypeWorkHour        = 3 // Fixed amount per hour worked
+)
