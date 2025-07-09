@@ -9,7 +9,7 @@ var (
 	CommissionTypes = map[int]string{
 		CommissionTypeFixedRate:       "Fixed rate",
 		CommissionTypeFixedPercentage: "Percentage",
-		CommissionTypeWorkHour:        "Workhour",
+		CommissionTypeWorkHour:        "Work hour",
 	}
 	CommissionTypesSlice = []map[string]any{
 		{"id": CommissionTypeFixedRate, "name": CommissionTypes[CommissionTypeFixedRate]},

@@ -17,3 +17,11 @@ const (
 	CommissionTypeFixedPercentage = 2 // Fixed percentage of transaction amount
 	CommissionTypeWorkHour        = 3 // Fixed amount per hour worked
 )
+
+const (
+	CommissionTypeOperationSales        = 1
+	CommissionTypeOperationValidations  = 2 // Validation of transactions
+	CommissionTypeOperationWorkingHours = 3 // Working hours related operations
+	CommissionTypeOperationMonthlySales = 4 // Monthly sales operations
+	CommissionTypeOperationCashBalance  = 5 // Cash balance operations
+)

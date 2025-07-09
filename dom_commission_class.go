@@ -5,6 +5,23 @@ import (
 	db "github.com/database-lab/dbutils"
 )
 
+var (
+	CommissionTypeOperations = map[int]string{
+		CommissionTypeOperationSales:        "Sales",
+		CommissionTypeOperationValidations:  "Validations",
+		CommissionTypeOperationWorkingHours: "Working hours",
+		CommissionTypeOperationMonthlySales: "Monthly sales",
+		CommissionTypeOperationCashBalance:  "Cash balance",
+	}
+	CommissionTypeOperationsSlice = []map[string]any{
+		{"id": CommissionTypeOperationSales, "name": CommissionTypeOperations[CommissionTypeOperationSales]},
+		{"id": CommissionTypeOperationValidations, "name": CommissionTypeOperations[CommissionTypeOperationValidations]},
+		{"id": CommissionTypeOperationWorkingHours, "name": CommissionTypeOperations[CommissionTypeOperationWorkingHours]},
+		{"id": CommissionTypeOperationMonthlySales, "name": CommissionTypeOperations[CommissionTypeOperationMonthlySales]},
+		{"id": CommissionTypeOperationCashBalance, "name": CommissionTypeOperations[CommissionTypeOperationCashBalance]},
+	}
+)
+
 type (
 	CommissionClass interface {
 		Id() int
