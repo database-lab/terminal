@@ -114,21 +114,33 @@ func (c *commissionClassItem) SetId(id int) error {
 }
 
 func (c *commissionClassItem) SetCommissionId(commissionId int) error {
+	if c.instance.CommissionID == commissionId {
+		return nil
+	}
 	c.instance.CommissionID = commissionId
 	return c.setChanged("CommissionID")
 }
 
 func (c *commissionClassItem) SetCommissionClassId(commissionClassId int) error {
+	if c.instance.CommissionClassID == commissionClassId {
+		return nil
+	}
 	c.instance.CommissionClassID = commissionClassId
 	return c.setChanged("CommissionClassID")
 }
 
 func (c *commissionClassItem) SetOperationType(operationType int) error {
+	if c.instance.OperationType == operationType {
+		return nil
+	}
 	c.instance.OperationType = operationType
 	return c.setChanged("OperationType")
 }
 
 func (c *commissionClassItem) SetGameId(gameId int) error {
+	if c.instance.GameID == gameId {
+		return nil
+	}
 	c.instance.GameID = gameId
 	return c.setChanged("GameID")
 }
