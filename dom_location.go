@@ -187,6 +187,9 @@ func (l *location) Address() Address {
 }
 
 func (l *location) SetId(id int) error {
+	if l.instance.ID == id {
+		return nil
+	}
 	l.instance.ID = id
 	return l.setChanged("ID")
 }
