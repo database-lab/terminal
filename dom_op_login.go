@@ -82,6 +82,9 @@ func (o *opLogin) LoginDetails() db.JSONB {
 }
 
 func (o *opLogin) SetId(id int) error {
+	if o.instance.ID == id {
+		return nil
+	}
 	o.instance.ID = id
 	return o.setChanged("ID")
 }
