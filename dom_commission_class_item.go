@@ -106,6 +106,9 @@ func (c *commissionClassItem) GameId() int {
 }
 
 func (c *commissionClassItem) SetId(id int) error {
+	if c.instance.ID == id {
+		return nil
+	}
 	c.instance.ID = id
 	return c.setChanged("ID")
 }
