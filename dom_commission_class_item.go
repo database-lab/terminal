@@ -24,6 +24,7 @@ type (
 		SetCommissionClassId(commissionClassId int) error
 		SetOperationType(operationType int) error
 		SetGameId(gameId int) error
+		String() string
 	}
 	commissionClassItem struct {
 		instance        *EntityCommissionClassItem
@@ -128,6 +129,7 @@ func (c *commissionClassItem) SetGameId(gameId int) error {
 	c.instance.GameID = gameId
 	return c.setChanged("GameID")
 }
+
 func (c *commissionClassItem) String() string {
 	return fmt.Sprintf("CommissionClassItem(ID: %d, CommissionID: %d, CommissionClassID: %d, OperationType: %d, GameID: %d)",
 		c.instance.ID, c.instance.CommissionID, c.instance.CommissionClassID, c.instance.OperationType, c.instance.GameID)
