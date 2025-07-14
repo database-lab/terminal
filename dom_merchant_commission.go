@@ -71,6 +71,9 @@ func (m *merchantCommission) ValidFrom() time.Time {
 }
 
 func (m *merchantCommission) SetId(id int) error {
+	if m.instance.ID == id {
+		return nil
+	}
 	m.instance.ID = id
 	return m.setChanged("ID")
 }
