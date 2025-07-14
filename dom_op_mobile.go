@@ -142,6 +142,9 @@ func (o *opMobile) OfflineSyncData() db.JSONB {
 }
 
 func (o *opMobile) SetId(id int) error {
+	if o.instance.ID == id {
+		return nil
+	}
 	o.instance.ID = id
 	return o.setChanged("ID")
 }
